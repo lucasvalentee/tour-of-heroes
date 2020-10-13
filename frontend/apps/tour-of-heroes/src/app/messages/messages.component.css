@@ -14,7 +14,7 @@ body, input[text], button {
 
 button.clear {
   font-family: Arial;
-  background-color: #eee;
+  background-color: #fa3737;
   border: none;
   padding: 5px 10px;
   border-radius: 4px;
@@ -22,7 +22,7 @@ button.clear {
   cursor: hand;
 }
 button:hover {
-  background-color: #cfd8dc;
+  background-color: #cc1f1f;
 }
 button:disabled {
   background-color: #eee;
@@ -30,6 +30,6 @@ button:disabled {
   cursor: auto;
 }
 button.clear {
-  color: #333;
+  color: white;
   margin-bottom: 12px;
 }
