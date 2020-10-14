@@ -37,3 +37,6 @@ button:disabled {
   color: #ccc;
   cursor: auto;
 }
+button:focus {
+  outline: 0;
+}
