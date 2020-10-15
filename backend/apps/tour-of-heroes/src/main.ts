@@ -10,10 +10,10 @@ import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const globalPrefix = 'api';
-  // app.setGlobalPrefix(globalPrefix);
-  const port = process.env.PORT || 3333;
-  await app.listen(port, () => {
+  app.enableCors({
+    origin: '*'
+  });
+  await app.listen(3333, () => {
     Logger.log('Back-end started! :)');
   });
 }

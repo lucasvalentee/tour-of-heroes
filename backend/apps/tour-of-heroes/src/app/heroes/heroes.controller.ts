@@ -1,6 +1,6 @@
 import { Hero } from './shared/hero';
 import { HeroService } from './shared/hero.service';
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
 
 @Controller('heroes')
 export class HeroesController {
@@ -10,13 +10,18 @@ export class HeroesController {
   ) { }
 
   @Get()
-  async getAll(): Promise<Hero[]> {
-    return this.heroService.getAll();
+  async getAll(@Query('name') name?: string): Promise<Hero[]> {
+    return (name ? this.heroService.getByName(name) : this.heroService.getAll());
   }
 
   @Get(':id')
-  async getById(@Param('id') id: number): Promise<Hero|Boolean> {
+  async getById(@Param('id') id: string): Promise<Hero> {
     return this.heroService.getById(id);
+  }
+
+  @Get(':name')
+  async getByName(@Param('name') name: string): Promise<Hero[]> {
+    return this.heroService.getByName(name);
   }
 
   @Post()
@@ -25,13 +30,12 @@ export class HeroesController {
   }
 
   @Put(':id')
-  async update(@Param('id') id: number, @Body() hero: Hero): Promise<Hero|Boolean> {
-    hero.id = id;
-    return this.heroService.update(hero);
+  async update(@Param('id') id: string, @Body() hero: Hero): Promise<Hero> {
+    return this.heroService.update(id, hero);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: number): Promise<void> {
+  async delete(@Param('id') id: string) {
     this.heroService.delete(id);
   }
 

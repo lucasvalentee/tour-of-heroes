@@ -1,4 +1,5 @@
-export class Hero {
-  id: number;
-  name: string;
+import { Document } from 'mongoose';
+
+export class Hero extends Document {
+  name: string
 }
